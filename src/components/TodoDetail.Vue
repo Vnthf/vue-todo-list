@@ -4,15 +4,14 @@
     </div>
 </template>
 
-<script>
-import {mapGetters} from 'vuex'
-import Constant from '../constant';
+<script lang="ts">
+import {GETTER_TYPE} from '../constant';
+import { Component, Vue } from 'vue-property-decorator'
 
-export default {
-    name: 'todo-detail',
+export default class TodoDetail extends Vue {
     mounted() {
         console.log(this.$route.params.id);
-        console.log(this.$store.getters[Constant.GET_TODO](this.$route.params.id))
+        console.log(this.$store.getters[GETTER_TYPE.GET_TODO](this.$route.params.id))
     }
 }
 </script>

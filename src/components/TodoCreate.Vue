@@ -4,30 +4,44 @@
   </div>
 </template>
 
-<script>
-import Constant from '../constant';
-import {mapActions} from 'vuex'
+<script lang="ts">
+import {ACTION_TYPE} from '../constant';
+import { Component, Vue } from 'vue-property-decorator'
+import {
+  State,
+  Getter,
+  Action,
+  Mutation,
+  namespace
+} from 'vuex-class'
 
-export default {
-    name: 'todo-create',
-    data() {
-        return {
-            value: ''
+@Component
+export default class TodoCreate extends Vue {
+    @Action(ACTION_TYPE.ADD_TODO) addTodo: any
+
+    value = ''
+    submit() {
+        if(!this.value) {
+            return;
         }
-    },
-    methods: {
-        submit() {
-            if(!this.value) {
-                return;
-            }
-            this[Constant.ADD_TODO](this.value);
-            this.value = '';
-        },
-        ...mapActions([
-            Constant.ADD_TODO
-        ])
-    } 
+        this.addTodo(this.value);
+        this.value = '';
+    }
 }
+
+
+    // methods: {
+    //     submit() {
+    //         if(!this.value) {
+    //             return;
+    //         }
+    //         this[Constant.ADD_TODO](this.value);
+    //         this.value = '';
+    //     },
+    //     ...mapActions([
+    //         Constant.ADD_TODO
+    //     ])
+    // } 
 </script>
 
 <style lang="scss">

@@ -8,17 +8,22 @@
   </div>
 </template>
 
-<script>
-import TodoList from './components/TodoList';
-import TodoCreate from './components/TodoCreate';
-import Constant from './constant';
+<script lang="ts">
+import TodoList from './components/TodoList.vue';
+import TodoCreate from './components/TodoCreate.vue';
+import {ACTION_TYPE} from './constant';
+import { Component, Vue } from 'vue-property-decorator'
 
-export default {
-  name: 'app',
+@Component({
+  components: {
+    TodoList,
+    TodoCreate
+  }
+})
+export default class App extends Vue {
   mounted() {
-     this.$store.dispatch(Constant.FETCH_TODO_LIST)
-  },
-  components: {TodoList, TodoCreate}
+     this.$store.dispatch(ACTION_TYPE.FETCH_TODO_LIST)
+  }
 }
 </script>
 

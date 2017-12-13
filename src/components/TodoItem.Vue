@@ -13,32 +13,56 @@
     </li>
 </template>
 
-<script>
-import {mapActions} from 'vuex'
-import Constant from '../constant';
+<script lang="ts">
+import {ACTION_TYPE, Todo} from '../constant';
+import { Component, Vue, Prop } from 'vue-property-decorator'
+import {
+  Action
+} from 'vuex-class'
 
-export default {
-    name: 'todo-item',
-    data() {
-        return {
-            isEditMode: false
+@Component
+export default class TodoItem extends Vue {
+    @Action(ACTION_TYPE.DELETE_TODO) deleteTodo: any
+    @Action(ACTION_TYPE.UPDATE_TODO) updateTodo: any
+    @Action(ACTION_TYPE.DONE_TOGGLE) done: any
+    @Prop()
+    todo: Todo
+
+    isEditMode = false
+
+    toggleEditMode() {
+        this.isEditMode = !this.isEditMode;
+        if(this.isEditMode) {
+            
         }
-    },
-    props: ['todo'],
-    methods: {
-        toggleEditMode() {
-            this.isEditMode = !this.isEditMode;
-            if(this.isEditMode) {
-                
-            }
-        },
-        ...mapActions({
-            'deleteTodo': Constant.DELETE_TODO,
-            'updateTodo': Constant.UPDATE_TODO,
-            'done': Constant.DONE_TOGGLE
-        })
     }
 }
+
+// import {mapActions} from 'vuex'
+// import Constant from '../constant';
+
+// export default {
+//     name: 'todo-item',
+//     data() {
+//         return {
+//             isEditMode: false
+//         }
+//     },
+//     props: ['todo'],
+//     methods: {
+//         toggleEditMode() {
+//             this.isEditMode = !this.isEditMode;
+//             if(this.isEditMode) {
+                
+//             }
+//         },
+//         ...mapActions({
+//             'deleteTodo': Constant.DELETE_TODO,
+//             'updateTodo': Constant.UPDATE_TODO,
+//             'done': Constant.DONE_TOGGLE
+//         })
+//     }
+// }
 </script>
 
 <style lang="scss">

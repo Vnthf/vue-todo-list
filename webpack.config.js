@@ -3,7 +3,7 @@ var webpack = require('webpack')
 // var polyfill = require('babel-polyfill')
 require('regenerator-runtime')
 module.exports = {
-  entry: ['regenerator-runtime', './src/main.js'],
+  entry: ['./src/main.ts'],
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -35,10 +35,19 @@ module.exports = {
         ],
       },
       {
+        test: /\.ts$/,
+        exclude: /node_modules|vue\/src/,
+        loader: 'ts-loader',
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        }
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
           loaders: {
+            esModule: true,
             // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
             // the "scss" and "sass" values for the lang attribute to the right configs here.
             // other preprocessors should work out of the box, no loader config like this necessary.
@@ -57,18 +66,6 @@ module.exports = {
         }
       },
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        // options: {
-        //   "presets": [
-        //     ["env", { "modules": false}],
-        //     "stage-3"
-        //   ],
-        //   plugins: ['transform-runtime']
-        // }
-      },
-      {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
@@ -81,7 +78,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     },
-    extensions: ['*', '.js', '.vue', '.json']
+    extensions: ['*', '.ts', '.js', '.vue', '.json']
   },
   devServer: {
     historyApiFallback: true,
