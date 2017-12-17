@@ -8,11 +8,7 @@
 import {ACTION_TYPE} from '../constant';
 import { Component, Vue } from 'vue-property-decorator'
 import {
-  State,
-  Getter,
-  Action,
-  Mutation,
-  namespace
+  Action
 } from 'vuex-class'
 
 @Component
@@ -29,19 +25,6 @@ export default class TodoCreate extends Vue {
     }
 }
 
-
-    // methods: {
-    //     submit() {
-    //         if(!this.value) {
-    //             return;
-    //         }
-    //         this[Constant.ADD_TODO](this.value);
-    //         this.value = '';
-    //     },
-    //     ...mapActions([
-    //         Constant.ADD_TODO
-    //     ])
-    // } 
 </script>
 
 <style lang="scss">

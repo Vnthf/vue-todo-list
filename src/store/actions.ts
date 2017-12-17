@@ -7,27 +7,11 @@ export const actions: ActionTree<State, any> = {
         let response: Response = await todoAPI.fetchTodoList();
         if(response.status === Status.SUCCESS) {
             commit(ACTION_TYPE.FETCH_TODO_LIST, response);
-        } else {
-            commit(ACTION_TYPE.FETCH_FAILURE, response);
-        }
+        } 
         return response;
     },
     async [ACTION_TYPE.ADD_TODO] ({dispatch}: any, payload: any) {
         let response: Response = await todoAPI.addTodo(payload);
-        if(response.status === Status.SUCCESS) {
-            await dispatch(ACTION_TYPE.FETCH_TODO_LIST);
-        }
-    },
-
-    async [ACTION_TYPE.UPDATE_TODO] ({dispatch}: any, payload: any) {
-        let response: Response = await todoAPI.updateTodo(payload);
-        if(response.status === Status.SUCCESS) {
-            await dispatch(ACTION_TYPE.FETCH_TODO_LIST);
-        }
-    },
-
-    async [ACTION_TYPE.DELETE_TODO] ({dispatch}: any, payload: any) {
-        let response: Response = await todoAPI.deleteTodo(payload);
         if(response.status === Status.SUCCESS) {
             await dispatch(ACTION_TYPE.FETCH_TODO_LIST);
         }

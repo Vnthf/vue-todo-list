@@ -4,13 +4,12 @@
     <todo-create></todo-create>
     <todo-list :done="false"></todo-list>
     <todo-list :done="true"></todo-list>
-    <router-view></router-view>
   </div>
 </template>
 
 <script lang="ts">
-import TodoList from './components/TodoList.vue';
-import TodoCreate from './components/TodoCreate.vue';
+import TodoList from './components/TodoList';
+import TodoCreate from './components/TodoCreate';
 import {ACTION_TYPE} from './constant';
 import { Component, Vue } from 'vue-property-decorator'
 

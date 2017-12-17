@@ -10,7 +10,7 @@
 <script lang="ts">
 
 import {GETTER_TYPE, Todo} from '../constant';
-import TodoItem from './TodoItem.vue'
+import TodoItem from './TodoItem'
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { State, Getter} from 'vuex-class'
 
@@ -31,20 +31,6 @@ export default class TodoList extends Vue {
     }
 }
 
-// import TodoItem from './TodoItem';
-// import Constant from '../constant';
-// import {mapState, mapGetters} from 'vuex'
-
-// export default {
-//     name: 'todo-list',
-//     props: ['done'],
-//     computed: {
-//         todoList() {
-//             return this.done ? this.$store.getters[Constant.DONE_TODO_LIST] : this.$store.getters[Constant.UNDONE_TODO_LIST];
-//         }
-//     },
-//     components: {TodoItem}
-// }
 </script>
 
 <style lang="scss">
